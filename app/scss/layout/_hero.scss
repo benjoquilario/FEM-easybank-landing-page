@@ -1,0 +1,89 @@
+@use '../abstracts/breakpoints' as *;
+@use '../abstracts/function' as func;
+@use '../abstracts/colors' as *;
+@use '../base/typography' as font;
+@use '../abstracts/animation' as *;
+
+.hero {
+  position: relative;
+  padding: 0 0 func.rem(88);
+  overflow: hidden;
+
+  .container {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    position: relative;
+    z-index: 20;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: -5%;
+      height: 100%;
+      width: 100%;
+      background: url("/images/bg-intro-mobile.svg");
+      background-size: 100%;
+      background-repeat: no-repeat;
+      z-index: -9;
+      animation: animationX 0.9s ease-in-out;
+      @include breakpoint-up(medium) {
+        background: url("/images/bg-intro-desktop.svg") no-repeat;
+        background-size: 105%;
+        right: -42%;
+        top: -30%;
+        height: 115%;
+        z-index: -9;
+      }
+    }
+
+    @include breakpoint-up(medium) {
+      flex-direction: row;
+    }
+  }
+  &__text {
+    padding: 0 func.rem(12);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: clamp(3.125rem, 12vw, 10.625rem);
+    text-align: center;
+    animation: animationX 1.7s ease-in-out;
+    gap: 4px;
+
+    @include breakpoint-up(medium) {
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    &--title {
+      max-width: func.rem(500);
+      font-size: clamp(2.125rem, 6vw, 3.5rem);
+      margin-bottom: 0;
+    }
+
+    &--sub-title {
+      max-width: func.rem(450);
+      margin-bottom: func.rem(30);
+    }
+  }
+
+  &__img {
+    position: relative;
+    z-index: -9;
+
+    &--bgphone {
+      margin-top: -17%;
+      animation: animationY-desktop 0.9s ease-in-out;
+      @include breakpoint-up(medium) {
+        animation: animationY 0.9s ease-in-out;
+      }
+      @include breakpoint-up(large) {
+        max-width: 45rem;
+        margin-top: -6rem;
+        margin-right: -16rem;
+        animation: animationY 1.5s ease-in-out;
+      }
+    }
+  }
+}

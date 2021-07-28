@@ -1,0 +1,42 @@
+@use '../abstracts/breakpoints' as *;
+@use '../abstracts/function' as func;
+
+.container {
+  max-width: func.rem(1120);
+  width: 100%;
+  margin: 0 auto;
+  &--small {
+    @extend .container;
+    max-width: func.rem(992);
+  }
+}
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  max-width: func.rem(1440);
+  margin: 0 auto;
+}
+
+.overlay {
+  position: fixed;
+  top: func.rem(82);
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2));
+  opacity: 0;
+  visibility: hidden;
+  //transition: opacity $default-transition;
+  pointer-events: none;
+  cursor: pointer;
+  @include breakpoint-up(medium) {
+    display: none;
+  }
+  &.show {
+    opacity: 1;
+    visibility: visible;
+  }
+}

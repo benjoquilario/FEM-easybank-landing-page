@@ -1,0 +1,26 @@
+@use '../abstracts/colors' as *;
+
+@import url("https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;600&display=swap");
+
+$font-300: 300;
+$font-400: 400;
+$font-700: 700;
+$font-PublicSans: "Public sans", sans-serif;
+
+h1,
+h2,
+h3,
+h4 {
+  margin-top: 0;
+}
+
+.heading {
+  color: $darkBlue;
+  line-height: 1.2;
+  font-weight: $font-300;
+}
+
+.paragraph {
+  color: $greyishBlue;
+  line-height: 1.75;
+}

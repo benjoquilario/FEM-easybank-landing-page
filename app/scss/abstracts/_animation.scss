@@ -1,0 +1,34 @@
+@use '../abstracts/function' as func;
+
+@keyframes animationY {
+  0% {
+    opacity: 0;
+    transform: translateY(func.rem(-100));
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes animationY-desktop {
+  0% {
+    opacity: 0;
+    transform: translateY(func.rem(-100));
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes animationX {
+  0% {
+    opacity: 0;
+    transform: translateX(func.rem(-100));
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}

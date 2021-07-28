@@ -1,0 +1,88 @@
+@use '../abstracts/colors' as *;
+@use '../abstracts/function' as func;
+@use '../base/typography' as font;
+@use '../abstracts/breakpoints' as *;
+
+.about {
+  margin-top: func.rem(-250);
+  display: grid;
+  justify-items: center;
+  background-color: $lightGreyishBlue;
+  padding: func.rem(100) func.rem(20);
+  z-index: 0;
+
+  @include breakpoint-down(medium) {
+    margin-top: func.rem(-40);
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: func.rem(74);
+
+    .features {
+      display: grid;
+      grid-template-columns: 1fr;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      grid-gap: func.rem(32);
+
+      @include breakpoint-up(medium) {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      @include breakpoint-up(large) {
+        grid-template-columns: repeat(4, 1fr);
+        text-align: left;
+      }
+
+      .feature {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        @include breakpoint-up(large) {
+          align-items: flex-start;
+        }
+
+        img {
+          display: block;
+          margin-bottom: func.rem(40);
+        }
+
+        &__heading {
+          font-size: clamp(1.125rem, 5vw, 1.4375rem);
+          margin-bottom: 26px;
+        }
+        &__paragraph {
+          font-size: clamp(0.875rem, 2vw, 0.9375rem);
+          font-weight: 300;
+          margin: 0;
+          line-height: 1.6;
+        }
+      }
+    }
+  }
+  &__info {
+    text-align: center;
+
+    @include breakpoint-up(medium) {
+      text-align: left;
+    }
+
+    &--title {
+      font-size: clamp(2.125rem, 6vw, 2.4375rem);
+      margin-bottom: func.rem(16);
+    }
+
+    &--sub-title {
+      font-size: clamp(0.9375rem, 2vw, 1.0625rem);
+      margin: 0;
+      max-width: func.rem(600);
+    }
+  }
+}

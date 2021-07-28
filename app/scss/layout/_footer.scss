@@ -1,0 +1,135 @@
+@use '../abstracts/colors' as *;
+@use '../abstracts/function' as func;
+@use '../abstracts/breakpoints' as *;
+@use '../base/typography' as typo;
+
+.footer {
+  padding: func.rem(46) func.rem(24);
+  background-color: $darkBlue;
+  width: 100%;
+
+  &__container {
+    display: grid;
+    grid-template-columns: 1fr func.rem(280) 2fr;
+    justify-content: center;
+    grid-gap: func.rem(20);
+    grid-template-areas:
+      "logo nav cta"
+      "social nav cta";
+
+    @include breakpoint-down(medium) {
+      grid-template-columns: 1fr;
+    }
+    @include breakpoint-down(small) {
+      grid-template-areas:
+        "logo"
+        "social"
+        "nav"
+        "cta";
+      justify-items: center;
+    }
+  }
+  &__logo {
+    grid-area: logo;
+    display: flex;
+    justify-content: space-between;
+
+    @include breakpoint-down(small) {
+      grid-area: logo;
+    }
+  }
+  &__social {
+    grid-area: social;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: func.rem(14);
+
+    @include breakpoint-down(small) {
+      grid-area: social;
+    }
+    &--icons {
+      color: $white;
+
+      path {
+        transition: fill 0.3s ease;
+      }
+
+      svg {
+        &:hover {
+          path {
+            fill: $limeGreen;
+          }
+        }
+      }
+    }
+  }
+  &__nav {
+    grid-area: nav;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: row;
+    gap: func.rem(28);
+
+    @include breakpoint-down(small) {
+      grid-area: nav;
+      flex-direction: column;
+    }
+    &--links,
+    &--more-links {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      flex-direction: column;
+
+      &-link {
+        padding: func.rem(8);
+        color: $white;
+        font-size: func.rem(15);
+        position: relative;
+
+        &::before {
+          content: "";
+          position: absolute;
+          background-color: $limeGreen;
+          bottom: -2px;
+          left: 0px;
+          right: 0px;
+          height: 2px;
+          width: 100%;
+          opacity: 0;
+          visibility: hidden;
+          transform: scale(0);
+          transition: transform 350ms ease-in-out;
+        }
+        @include breakpoint-up(medium) {
+          &:hover {
+            color: $limeGreen;
+
+            &::before {
+              transform: scale(1);
+              opacity: 1;
+              visibility: visible;
+            }
+          }
+        }
+      }
+    }
+  }
+  &__button {
+    grid-area: cta;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: flex-end;
+    @include breakpoint-down(small) {
+      grid-area: cta;
+      align-items: flex-start;
+    }
+    &--copy {
+      color: $greyishBlue;
+      font-size: func.rem(15);
+    }
+  }
+}

@@ -1,0 +1,122 @@
+@use '../abstracts/colors' as *;
+@use '../base/typography'as font;
+@use '../abstracts/function' as func;
+@use '../abstracts/breakpoints' as *;
+
+.header {
+  //padding: clamp(15px, 2vw, 23px) 10px clamp(34px, 3vw, 12px);
+  background-color: $white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    //position: relative;
+    padding: func.rem(18) func.rem(10);
+    z-index: 100;
+    width: 100%;
+
+    @include breakpoint-down(small) {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 100;
+      background: $white;
+    }
+
+    &__logo {
+      width: func.rem(138);
+    }
+
+    &__menu {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: func.rem(27);
+
+      @include breakpoint-down(medium) {
+        display: grid;
+        grid-auto-flow: column;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(5, func.rem(28));
+        position: absolute;
+        align-items: center;
+        justify-items: center;
+        opacity: 0;
+        top: func.rem(-1000);
+      }
+    }
+    &__menu.active {
+      width: 95%;
+      top: 120%;
+      z-index: 10;
+      background: $white;
+      height: 40vh;
+      opacity: 1;
+      border-radius: func.rem(20);
+      font-weight: font.$font-700;
+      box-shadow: 0 func.rem(10) func.rem(20) rgba(0, 0, 0, 0.19),
+        0 0px 6px rgba(0, 0, 0, 0.23);
+      opacity: 1;
+      transition: opacity 0.4s ease-in;
+
+      @include breakpoint-up(large) {
+        width: unset;
+        top: unset;
+        z-index: unset;
+        background: unset;
+        height: unset;
+        opacity: unset;
+        border-radius: unset;
+        font-weight: unset;
+        box-shadow: unset;
+      }
+    }
+
+    &__links {
+      font-size: func.rem(14);
+      color: $greyishBlue;
+      position: relative;
+
+      &::before {
+        content: "";
+        position: absolute;
+        background: linear-gradient(to right, $limeGreen, $brightCyan);
+        height: 3px;
+        width: 100%;
+        left: 0px;
+        right: 0px;
+        bottom: func.rem(-32);
+        opacity: 0;
+        visibility: hidden;
+        transform: scale(0);
+        transition: transform 350ms ease-in-out;
+
+        @include breakpoint-down(small) {
+          visibility: hidden;
+        }
+      }
+      @include breakpoint-up(large) {
+        &:hover {
+          &::before {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1);
+          }
+        }
+      }
+      @include breakpoint-down(small) {
+        color: $darkBlue;
+      }
+
+      &:hover {
+        color: $darkBlue;
+      }
+    }
+  }
+}

@@ -1,0 +1,93 @@
+@use '../abstracts/colors' as *;
+@use '../abstracts/function' as func;
+@use '../abstracts/breakpoints' as *;
+@use '../base/typography' as typo;
+
+.articles {
+  position: relative;
+  background-color: $veryLightGrey;
+  padding: func.rem(89) func.rem(30);
+
+  &__title {
+    font-size: clamp(1.875rem, 6vw, 2.5rem);
+    text-align: center;
+
+    @include breakpoint-up(large) {
+      text-align: left;
+      padding-left: func.rem(109);
+    }
+  }
+
+  &__article {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-color: $white;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.19), 0 1px 1px rgba(0, 0, 0, 0.23);
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.05) translateY(13px);
+      transition: transform 350ms ease-in-out;
+      opacity: 0.9;
+    }
+  }
+
+  &__img {
+    width: 100%;
+
+    &--image {
+      object-fit: cover;
+      width: 100%;
+      height: func.rem(200);
+      border-radius: 4px;
+    }
+  }
+  &__content {
+    padding: func.rem(23) func.rem(29);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+
+    @include breakpoint-up(medium) {
+      padding: func.rem(15);
+    }
+
+    &--name {
+      font-size: clamp(0.625rem, 2vw, 0.75rem);
+      margin-bottom: func.rem(10);
+    }
+
+    &--title {
+      font-size: func.rem(16);
+      margin-bottom: func.rem(14);
+      &:hover {
+        color: $limeGreen;
+      }
+    }
+
+    &--sub-title {
+      font-size: func.rem(13);
+      line-height: 1.4;
+      margin: 0;
+    }
+  }
+
+  .container {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    grid-gap: func.rem(28);
+
+    @include breakpoint-up(medium) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @include breakpoint-up(large) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+}
