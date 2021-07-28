@@ -418,11 +418,11 @@ main {
 }
 
 .about {
-  margin-top: -15.625rem;
+  margin-top: -14.625rem;
   display: grid;
   justify-items: center;
   background-color: #f3f4f6;
-  padding: 6.25rem 1.25rem;
+  padding: 7.25rem 1.25rem;
   z-index: 0;
 }
 @media (max-width: 63.9375em) {
